@@ -21,7 +21,7 @@ export class Users extends Model<Users, UserModelCreationAttrs> {
   @Column({ type: DataType.STRING, allowNull: false })
   password: string;
 
-  @ApiProperty({ example: '8.23', description: 'Очки гонки'})
+  @ApiProperty({ example: 11235, description: 'Очки гонки'})
   @Column({ type: DataType.INTEGER })
   score?: number;
 

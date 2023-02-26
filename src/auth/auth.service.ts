@@ -51,4 +51,15 @@ export class AuthService {
     }
     throw new UnauthorizedException({ message: 'Некорректный пороль или имя' });
   }
+
+  async updateScore(score: number, token: string) {
+    if (!token) {
+      throw new UnauthorizedException({ message: 'Не авторизирован' });
+    }
+    const decoded = await this.jwtService.verify(token);
+    const user = await this.userService.getUserByName(decoded.name);
+    user.score = score;
+    await user.save();
+    return
+  }
 }
