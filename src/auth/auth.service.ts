@@ -58,7 +58,9 @@ export class AuthService {
     }
     const decoded = await this.jwtService.verify(token);
     const user = await this.userService.getUserByName(decoded.name);
-    user.score = score;
+    if (user.score < score) {
+      user.score = score;
+    }
     await user.save();
     return
   }
